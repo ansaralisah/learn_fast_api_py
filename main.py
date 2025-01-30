@@ -1,12 +1,12 @@
+from constant import AppConstant
+from model import CreateUser,Register
+from tables import RegisterTable,UserTable
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import SQLAlchemyError 
 
-from database import get_db, engine, Base
-from constant.constant import AppConstant
-from model.user_model import CreateUser,UserTable
-from model.register_model import Register,RegisterTable
+from database import Base,engine,get_db 
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
@@ -24,7 +24,7 @@ def create_user(create_user: CreateUser, db: Session = Depends(get_db)):
      
         new_user = UserTable(name=create_user.name, email=create_user.email, password=AppConstant.check_password_strength(create_user.password)) 
         db.add(new_user)     
-        db.commit()
+        db.commit() 
         db.refresh(new_user) 
         return AppConstant.getSuccessModel(data=new_user)
     
@@ -80,7 +80,7 @@ def registerUser(register: Register, db: Session = Depends(get_db)):
         email=register.email,
         password=register.password,
         profile_pic=register.profile_pic,
-        id_token=register.id_token
+        id_token=register.id_token  
     )
     
     try:

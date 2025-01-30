@@ -1,8 +1,7 @@
 import re
-
-
+ 
 class AppConstant:
-    def check_password_strength(password):
+    def check_password_strength(password): 
         length_criteria = len(password) >= 8
         digit_criteria = bool(re.search(r"\d", password))
         lowercase_criteria = bool(re.search(r"[a-z]", password))
@@ -16,9 +15,8 @@ class AppConstant:
         elif score == 3 or score == 4:
             return "Normal Password"
         else: 
-            return "Strong Password"
+            return "Strong Password" 
 
-        
     def getErrorModel(error):
         return {
             "status": "error",
@@ -31,7 +29,4 @@ class AppConstant:
             "status": "success",
             "data": data,
             "message": 'success',
-        }	
-    
-  
-
+        }
